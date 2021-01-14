@@ -16,10 +16,10 @@ function Form() {
     ville: "",
     contrat: "",
     teletravail : "",
-    competences: "",
+    competences: [],
     salaire: "",
     experience: "",
-    disponibilité: "",
+    disponibilite: "",
 
   });
   
@@ -68,7 +68,7 @@ function Form() {
         <label>
           Nom:
           <input
-            name="name"
+            name="nom"
             type="text"
             onChange={handleChange}
             value={form.nom}
@@ -78,7 +78,7 @@ function Form() {
         <label>
           Prénom:
           <input
-            name="lastname"
+            name="prenom"
             type="text"
             onChange={handleChange}
             value={form.prenom}
@@ -97,7 +97,9 @@ function Form() {
         <br />
         <label>
           Type de contrat:
-          <select value={form.contrat} onChange={handleChange}>
+          <select value={form.contrat} name="contrat"
+            type="select" onChange={handleChange}>
+          
             <option value=".."></option>       
             <option value="CDD">CDD</option>
             <option value="CDI">CDI</option>
@@ -109,7 +111,8 @@ function Form() {
         <br />
         <label>
           Télétravail :
-          <select value={form.teletravail} onChange={handleChange}>
+          <select value={form.teletravail} name="teletravail"
+            type="select"  onChange={handleChange}>
             <option value="..."></option>          
             <option value="Yes">Oui</option>
             <option value="No">Non</option>
@@ -127,7 +130,7 @@ function Form() {
           Prétentions salariales:
           <input
             name="salaire"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={form.salaire}
           />
@@ -137,7 +140,7 @@ function Form() {
           Expérience:
           <input
             name="experience"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={form.experience}
           />
@@ -146,7 +149,8 @@ function Form() {
       
         <label>
           Disponibilité:
-          <select value={form.disponibilité} onChange={handleChange}>
+          <select value={form.disponibilite}   name="disponibilite"
+            type="select" onChange={handleChange}>
             <option value="..."></option>       
             <option value="ASAP">De suite</option>
             <option value="3mois">D'ici 3 mois</option>
