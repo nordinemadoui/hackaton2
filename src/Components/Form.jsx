@@ -118,8 +118,9 @@ function Form() {
         <br />
         Compétences:
         <Competence>
-        
+        <select value={form.competences} onChange={handleChange}>
           <Multiselect options={options} displayValue="langage" />
+        </select>
         </Competence>
         <br />
         <label>
