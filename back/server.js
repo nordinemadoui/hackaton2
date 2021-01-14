@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // API calls
 
+//const formData = req.body;
+//const csv = `name=${formData.name};age=${formData.age};....`
 
 app.post('/', (req, res) => {
   console.log(req.body);
@@ -31,3 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+
