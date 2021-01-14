@@ -9,7 +9,7 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import React from 'react';
 
 
-function App() {
+function Form() {
   const [form, setForm] = useState({
     nom: "",
     prenom: "",
@@ -158,4 +158,4 @@ function App() {
     </Container>
   );
 }
-export default App;
+export default Form;
