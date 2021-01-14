@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // API calls
 
 
-app.post('/comics', (req, res) => {
+app.post('/', (req, res) => {
   console.log(req.body);
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`,
