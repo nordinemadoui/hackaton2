@@ -2,8 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import {
   Container,
-  Button
+  Button,
+  Competence
 } from "../styled-components/Form";
+import { Multiselect } from 'multiselect-react-dropdown';
 import React from 'react';
 
 
@@ -17,8 +19,29 @@ function App() {
     competences: "",
     salaire: "",
     experience: "",
+    disponibilité: "",
 
   });
+  
+  const data = [
+    {langage: "python", id: 1},
+    {langage: "java", id:2},
+    {langage: "react", id:1},
+    {langage: "Django", id:1},
+    {langage: "NOSQL", id:1},
+    {langage: "sql", id:1},
+    {langage: "JSAngular JS", id:1},
+    {langage: "C++", id:1},
+    {langage: "Magento", id:1},
+    {langage: "Java", id:1},
+    {langage: "Gunicorn", id:1},
+    {langage: "Symphony", id:1},
+    {langage: "php", id:1},
+    {langage: "vueJS", id:1}
+  ]
+  
+  const [options] = useState(data);
+
 
   const handleChange = (e) => {
     console.log("got field " + e.target.name + ", value " + e.target.value);
@@ -48,7 +71,7 @@ function App() {
             name="name"
             type="text"
             onChange={handleChange}
-            value={form.author}
+            value={form.nom}
           />
         </label>
         <br />
@@ -58,23 +81,23 @@ function App() {
             name="lastname"
             type="text"
             onChange={handleChange}
-            value={form.title}
+            value={form.prenom}
           />
         </label>
         <br />
         <label>
           Ville:
           <input
-            name="experience"
+            name="ville"
             type="text"
             onChange={handleChange}
-            value={form.Illustrator}
+            value={form.ville}
           />
         </label>
         <br />
         <label>
           Type de contrat:
-          <select value={form.picture} onChange={handleChange}>
+          <select value={form.contrat} onChange={handleChange}>
             <option value=".."></option>       
             <option value="CDD">CDD</option>
             <option value="CDI">CDI</option>
@@ -86,22 +109,18 @@ function App() {
         <br />
         <label>
           Télétravail :
-          <select value={form.picture} onChange={handleChange}>
+          <select value={form.teletravail} onChange={handleChange}>
             <option value="..."></option>          
             <option value="Yes">Oui</option>
             <option value="No">Non</option>
           </select>
         </label>
         <br />
-        <label>
-          Compétences:
-          <input
-            name="competence"
-            type="text"
-            onChange={handleChange}
-            value={form.picture}
-          />
-        </label>
+        Compétences:
+        <Competence>
+        
+          <Multiselect options={options} displayValue="langage" />
+        </Competence>
         <br />
         <label>
           Prétentions salariales:
@@ -109,7 +128,7 @@ function App() {
             name="salaire"
             type="text"
             onChange={handleChange}
-            value={form.picture}
+            value={form.salaire}
           />
         </label>
         <br />
@@ -117,15 +136,16 @@ function App() {
           Expérience:
           <input
             name="experience"
-            type="checkbox"
+            type="text"
             onChange={handleChange}
-            value={form.picture}
+            value={form.experience}
           />
         </label>
         <br />
+      
         <label>
           Disponibilité:
-          <select value={form.picture} onChange={handleChange}>
+          <select value={form.disponibilité} onChange={handleChange}>
             <option value="..."></option>       
             <option value="ASAP">De suite</option>
             <option value="3mois">D'ici 3 mois</option>

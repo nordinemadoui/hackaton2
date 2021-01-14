@@ -19,8 +19,13 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     
-    label {
+    label input {
         margin: O;
+        border-radius:2px;
+        text-align:center;
+        padding: 8px;
+       
+       
     }
 
     
@@ -37,3 +42,9 @@ export const Button = styled.input`
     width: 150px;
     height: 60px;
     margin: 5px`
+
+export const Competence = styled.label`
+    
+    width:300px;
+    background-color:white;
+    color: black;`
