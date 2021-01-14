@@ -25,6 +25,11 @@ function Step2(props) {
           onChange={props.handleChange}
         />
       </p>
+      Do you accept remote:{" "}
+        <input
+          name="phone"
+          value={props.getState("phone", "")}
+          onChange={props.handleChange} />
       <p>
         <Button onClick={props.prev}>Retour</Button>
         <Button onClick={props.next}>Envoyer</Button>

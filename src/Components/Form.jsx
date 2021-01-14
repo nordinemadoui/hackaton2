@@ -1,42 +1,141 @@
-import React from 'react'
+import { useState } from "react";
+import axios from "axios";
+import {
+  Container,
+  Button
+} from "../styled-components/Form";
+import React from 'react';
 
-import { Steps, Step } from "react-step-builder";
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
-import FinalStep from "./FinalStep";
 
-const Navigation = (props) => {
-return (
-  <div>
-    <button onClick={props.prev}>Global Previous</button>
-    <button onClick={props.next}>Global Next</button>
-  </div>
-);
-};
-
-  
 function App() {
-  const config = {
-    navigation: {
-      component: Navigation, // a React component with special props provided automatically
-      location: "before" // or after
-    }
+  const [form, setForm] = useState({
+    nom: "",
+    prenom: "",
+    ville: "",
+    contrat: "",
+    teletravail : "",
+    competences: "",
+    salaire: "",
+    experience: "",
+
+  });
+
+  const handleChange = (e) => {
+    console.log("got field " + e.target.name + ", value " + e.target.value);
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:5050/comics", form).then(({ data }) => {
+      console.log("Comic was created")
+    }).catch((err) => {
+      console.warn("Something went poorly")
+    })
+    console.log(form);
+  };
+
 
   return (
-    <div className="App">
-      <Steps config={config}>
-        <Step component={Step1} />
-        <Step component={Step2} />
-        <Step component={Step3} />
-        <Step component={FinalStep} />
-      </Steps>
-      
-    </div>
+  
+    <Container>
+    <h1>Faisons connaissance</h1>
+      <p>J'ai besoin de quelques renseignements afin de t'aider au mieux</p>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Nom:
+          <input
+            name="name"
+            type="text"
+            onChange={handleChange}
+            value={form.author}
+          />
+        </label>
+        <br />
+        <label>
+          Prénom:
+          <input
+            name="lastname"
+            type="text"
+            onChange={handleChange}
+            value={form.title}
+          />
+        </label>
+        <br />
+        <label>
+          Ville:
+          <input
+            name="experience"
+            type="text"
+            onChange={handleChange}
+            value={form.Illustrator}
+          />
+        </label>
+        <br />
+        <label>
+          Type de contrat:
+          <select value={form.picture} onChange={handleChange}>
+            <option value=".."></option>       
+            <option value="CDD">CDD</option>
+            <option value="CDI">CDI</option>
+            <option value="STAGE">Stage</option>
+            <option value="Freelance">Freelance</option>
+
+          </select>
+        </label>
+        <br />
+        <label>
+          Télétravail :
+          <select value={form.picture} onChange={handleChange}>
+            <option value="..."></option>          
+            <option value="Yes">Oui</option>
+            <option value="No">Non</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Compétences:
+          <input
+            name="competence"
+            type="text"
+            onChange={handleChange}
+            value={form.picture}
+          />
+        </label>
+        <br />
+        <label>
+          Prétentions salariales:
+          <input
+            name="salaire"
+            type="text"
+            onChange={handleChange}
+            value={form.picture}
+          />
+        </label>
+        <br />
+        <label>
+          Expérience:
+          <input
+            name="experience"
+            type="checkbox"
+            onChange={handleChange}
+            value={form.picture}
+          />
+        </label>
+        <br />
+        <label>
+          Disponibilité:
+          <select value={form.picture} onChange={handleChange}>
+            <option value="..."></option>       
+            <option value="ASAP">De suite</option>
+            <option value="3mois">D'ici 3 mois</option>
+            <option value="6mois">D'ici 6 mois</option>
+          </select>
+        </label>
+        <br />
+        <input type="Submit" readOnly value="Envoyer" />
+      </form>
+    </Container>
   );
 }
-
 export default App;

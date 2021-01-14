@@ -6,7 +6,6 @@ import HomePage from "./Components/HomePage";
 import BarChart from "./Components/BarChart";
 
 
-
 function App() {
   return (
     <div className="App">
