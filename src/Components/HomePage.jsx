@@ -16,7 +16,9 @@ const HomePage = () => {
         </Link>
             </div>
             <div>
+        <Link to="/devsenior">
               <div>Pour les vétérans du dev</div>
+        </Link>
             </div>
             <div>
               <div>Référence du junior</div>

@@ -4,6 +4,7 @@ import Form from "./Components/Form";
 import { Switch, Route } from "react-router-dom";
 import HomePage from "./Components/HomePage";
 import BarChart from "./Components/BarChart";
+import DevSenior from "./Components/DevSenior";
 
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
     <Switch>
       <Route path="/barchart">
       <BarChart/>
+      </Route>
+      <Route path="/devsenior">
+      <DevSenior/>
       </Route>
         <Route exact path="/">
           <Accueil />

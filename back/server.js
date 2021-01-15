@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // API calls
 
 //const formData = req.body;
-//const csv = `name=${formData.name};age=${formData.age};....`
+//const csv = `competences=${formData.competences};disponibilite=${formData.disponibilite};experience=${formData.experience};nom=${formData.nom};prenom=${formData.prenom};salaire=${formData.salaire};teletravail=${formData.teletravail};ville=${formData.ville}`
 
 app.post('/', (req, res) => {
   console.log(req.body);

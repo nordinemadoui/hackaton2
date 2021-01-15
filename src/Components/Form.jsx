@@ -1,12 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
+import React, { Component } from 'react';
+import { Multiselect } from 'multiselect-react-dropdown';
+
+
 import {
   Container,
-  Button,
-  Competence
+  Div,
 } from "../styled-components/Form";
-import { Multiselect } from 'multiselect-react-dropdown';
-import React from 'react';
+
+
 
 
 function Form() {
@@ -20,28 +23,21 @@ function Form() {
     salaire: "",
     experience: "",
     disponibilite: "",
-
+    langue: "",
+    data: [],
   });
   
-  const data = [
-    {langage: "python", id: 1},
-    {langage: "java", id:2},
-    {langage: "react", id:1},
-    {langage: "Django", id:1},
-    {langage: "NOSQL", id:1},
-    {langage: "sql", id:1},
-    {langage: "JSAngular JS", id:1},
-    {langage: "C++", id:1},
-    {langage: "Magento", id:1},
-    {langage: "Java", id:1},
-    {langage: "Gunicorn", id:1},
-    {langage: "Symphony", id:1},
-    {langage: "php", id:1},
-    {langage: "vueJS", id:1}
-  ]
-  
-  const [options] = useState(data);
+  const options = [
+    {name: 'python', id:1 },
+    {name: 'javascript', id:2},
+    {name: 'java', id:1 },
+    {name: 'mongodb', id:2},
+    {name: 'html', id:1 },
+    {name: 'django', id:2}
+  ];
 
+  const [data] = useState(options);
+  
 
   const handleChange = (e) => {
     console.log("got field " + e.target.name + ", value " + e.target.value);
@@ -50,10 +46,10 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5050/comics", form).then(({ data }) => {
-      console.log("Comic was created")
+    axios.post("http://localhost:5090", form).then(({ data }) => {
+      console.log("Send")
     }).catch((err) => {
-      console.warn("Something went poorly")
+      console.warn("problem")
     })
     console.log(form);
   };
@@ -66,7 +62,7 @@ function Form() {
       <p>J'ai besoin de quelques renseignements afin de t'aider au mieux</p>
       <form onSubmit={handleSubmit}>
         <label>
-          Nom:
+         <Div>Nom:</Div>
           <input
             name="nom"
             type="text"
@@ -76,7 +72,7 @@ function Form() {
         </label>
         <br />
         <label>
-          Prénom:
+         <Div>Prénom:</Div>
           <input
             name="prenom"
             type="text"
@@ -86,7 +82,7 @@ function Form() {
         </label>
         <br />
         <label>
-          Ville:
+         <Div>Ville:</Div>
           <input
             name="ville"
             type="text"
@@ -96,7 +92,7 @@ function Form() {
         </label>
         <br />
         <label>
-          Type de contrat:
+         <Div>Type de contrat:</Div>
           <select value={form.contrat} name="contrat"
             type="select" onChange={handleChange}>
           
@@ -110,7 +106,7 @@ function Form() {
         </label>
         <br />
         <label>
-          Télétravail :
+         <Div>Télétravail :</Div>
           <select value={form.teletravail} name="teletravail"
             type="select"  onChange={handleChange}>
             <option value="..."></option>          
@@ -119,15 +115,14 @@ function Form() {
           </select>
         </label>
         <br />
-        Compétences:
-        <Competence>
-        <select value={form.competences} onChange={handleChange}>
-          <Multiselect options={options} displayValue="langage" />
-        </select>
-        </Competence>
+        <Div>Compétences:</Div>
+        <label>
+        <Multiselect options= {data} displayValue="name" />
+        
+        </label>
         <br />
         <label>
-          Prétentions salariales:
+        <Div>Prétentions salariales (ke):</Div>
           <input
             name="salaire"
             type="number"
@@ -137,7 +132,7 @@ function Form() {
         </label>
         <br />
         <label>
-          Expérience:
+        <Div>Expérience:</Div>
           <input
             name="experience"
             type="number"
@@ -148,7 +143,7 @@ function Form() {
         <br />
       
         <label>
-          Disponibilité:
+        <Div>Disponibilité:</Div>
           <select value={form.disponibilite}   name="disponibilite"
             type="select" onChange={handleChange}>
             <option value="..."></option>       
